@@ -1,0 +1,72 @@
+<div class="bg" style="background-color: #F8F8F8;">
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+        <div class="parent">
+            <div class="child">
+                <div nz-row class="imgDiv">
+                    <h1 style="margin-left: 80px;">Sign up</h1>
+                </div>
+                <form ng-form [formGroup]="signupForm">
+                    <div class="form-container">
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback nzErrorTip="The input is not a valid Email!">
+                                <input nz-input placeholder="Email" id="email"formControlName="email" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzErrorTip]="errorpass">
+                                <input nz-input placeholder="Password" id="password" type="password" formControlName="password"/>
+                                <ng-template #errorpass let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        Password is required!
+                                    </ng-container>
+                                    <ng-container *ngIf="control.hasError('pattern')">
+                                        Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzErrorTip]="errorTp1">
+                                <input nz-input type="password" placeholder="Confirm Password" id="checkPassword" formControlName="checkPassword"/>
+                                <ng-template #errorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        Confirm Password is required!
+                                    </ng-container>
+                                    <ng-container *ngIf="control.hasError('Confirm')">
+                                        Passwords do not match!
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzErrorTip]="userErrorTp1">
+                                <input nz-input placeholder="Name" id="username" formControlName="username"/>
+                                <ng-template #userErrorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        Please enter your name!
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback [nzErrorTip]="phoneErrorTp1">
+                                <input nz-input placeholder="Phone Number" id="phone" formControlName="phone"/>
+                                <ng-template #phoneErrorTp1 let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        Please enter your phone number!
+                                    </ng-container>
+                                    <ng-container *ngIf="control.hasError('pattern')">
+                                        Phone number should contain only numbers!
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+
+                    <button nz-button class="login-form-buttom login-form-margin" [nzType]="'primary'" (click)="register()" [disabled]="signupForm.invalid">Register</button>
+                    Or <a routerLink="/login">login now!</a>
+                </form>
+            </div>
+        </div>
+    </nz-spin>
+</div>
